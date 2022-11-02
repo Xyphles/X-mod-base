@@ -9,6 +9,26 @@
 ;; Letterbox and blackout
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(define orb-count-big 0.3
+)
+
+(defun make-jak-bigger()
+(set! (-> (-> (the-as target *target* )root)scale x) orb-count-big)(set! (-> (-> (the-as target *target* )root)scale y) orb-count-big)(set! (-> (-> (the-as target *target* )root)scale z) orb-count-big)
+)
+
+
+(defun run-every-frame()
+(make-jak-bigger) 
+)
+
+
+
+
+
+
+
+
+
 (defun set-letterbox-frames ((arg0 time-frame))
   "Set the letterbox frame counter for arg0 frames in the future"
   (set! (-> *game-info* letterbox-time) (+ (current-time) arg0))
@@ -705,6 +725,7 @@
         (make-current-level-available-to-progress)
         (update-task-hints)
         (load-level-text-files -1)
+        (run-every-frame)
 
         (add-ee-profile-frame 'unknown-cpu-time)
         ;; collect perf stats
