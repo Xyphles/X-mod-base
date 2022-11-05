@@ -6,6 +6,7 @@
 ;; dgos: GAME, ENGINE
 
 ;; DECOMP BEGINS
+(define-extern orb-count-big float)
 
 (import "goal_src/jak1/import/deathcam-ag.gc")
 
@@ -454,6 +455,7 @@
     (ja :group! eichar-stance-loop-ja)
     (suspend)
     (logior! (-> self control status) (cshape-moving-flags onsurf onground tsurf))
+    (set! orb-count-big (+ 0.3 (* (-> *game-info* money-total) 0.0025)))
     (go target-stance)
     (none)
     )

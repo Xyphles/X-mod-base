@@ -1,4 +1,4 @@
-;;-*-Lisp-*-
+-Lisp-*-
 (in-package goal)
 
 ;; name: main.gc
@@ -18,7 +18,7 @@
 
 
 (defun run-every-frame()
-(make-jak-bigger) 
+(make-jak-bigger)
 )
 
 
@@ -1036,5 +1036,3 @@
         )
     )
   (set! *run* #f)
-  0
-  )

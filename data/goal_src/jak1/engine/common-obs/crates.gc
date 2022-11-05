@@ -539,8 +539,55 @@
             )
           )
          (('steel)
+         (case (-> arg3 param 1)
+            (('explode 'darkeco 'eco-yellow 'bonk 'tube 'flut-bonk 'flut-attack 'racer 'punch 'flop 'spin 'uppercut)
+            (if (<= growth-lvl2 orb-count-big)
+            (begin
+            (send-event arg0 'get-attack-count 1)
+             (when (logtest? (-> self draw status) (draw-status was-drawn))
+               (increment-success-for-hint (game-text-id sidekick-hint-crate-steel))
+               (level-hint-spawn
+                 (game-text-id sidekick-hint-crate-steel-break1)
+                 "sksp0004"
+                 (the-as entity #f)
+                 *entity-pool*
+                 (game-task none)
+                 )
+               (level-hint-spawn
+                 (game-text-id sidekick-hint-crate-steel-break2)
+                 "sksp009b"
+                 (the-as entity #f)
+                 *entity-pool*
+                 (game-task none)
+                 )
+               )
+             (go-virtual die #f (the-as int s5-0))
+
+            ))
+             
+             )
+            (else
+              (when (and (!= s4-0 (-> self incomming-attack-id)) (= (-> self root-override trans y) (-> self base y)))
+                (level-hint-spawn
+                  (game-text-id sidekick-hint-crate-steel)
+                  "sksp0006"
+                  (the-as entity #f)
+                  *entity-pool*
+                  (game-task none)
+                  )
+                (set! (-> self incomming-attack-id) s4-0)
+                (if (not (!= (-> self smush amp) 0.0))
+                    (sound-play "scrate-nobreak")
+                    )
+                (activate! (-> self smush) 0.1 90 150 1.0 1.0)
+                (go-virtual bounce-on)
+                )
+              #f
+              )
+            )
+
           (case (-> arg3 param 1)
-            (('explode 'darkeco 'eco-yellow 'bonk 'tube 'flut-bonk 'flut-attack 'racer)
+            (('explode 'darkeco 'eco-yellow 'bonk 'tube 'flut-bonk 'flut-attack 'racer )
              (send-event arg0 'get-attack-count 1)
              (when (logtest? (-> self draw status) (draw-status was-drawn))
                (increment-success-for-hint (game-text-id sidekick-hint-crate-steel))
